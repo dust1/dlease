@@ -15,6 +15,8 @@ public class MyFirstVerticle extends AbstractVerticle {
                 System.out.println(buffer.toString()); 
             });
         });
+
+        
         server.listen(8080, "0.0.0.0", res -> {
             if (res.succeeded()) {
                 System.out.println("Server is new listining");
