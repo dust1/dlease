@@ -11,11 +11,16 @@ public class MyFirstVerticle extends AbstractVerticle {
     public void start() {
         NetServer server = vertx.createNetServer();
         server.connectHandler(socket -> {
+            //TODO 接收到消息后将消息转成Java对象并解析。
+            //这里只会接收一下几种消息
+            //1. client上线
+            //2. client申请租约
+            //3. client请求续租
+            //后续可能有更多再说
             socket.handler(buffer -> {
                 System.out.println(buffer.toString()); 
             });
         });
-
         
         server.listen(8080, "0.0.0.0", res -> {
             if (res.succeeded()) {
@@ -28,3 +33,4 @@ public class MyFirstVerticle extends AbstractVerticle {
     }
 
 }
+  
