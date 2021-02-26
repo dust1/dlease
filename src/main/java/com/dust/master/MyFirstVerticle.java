@@ -1,8 +1,9 @@
 package com.dust.master;
 
-import java.net.Socket;
+import java.util.Arrays;
 
 import io.vertx.core.AbstractVerticle;
+import io.vertx.core.buffer.Buffer;
 import io.vertx.core.net.NetServer;
 
 public class MyFirstVerticle extends AbstractVerticle {
@@ -18,7 +19,12 @@ public class MyFirstVerticle extends AbstractVerticle {
             //3. client请求续租
             //后续可能有更多再说
             socket.handler(buffer -> {
+                Buffer b = buffer.getBuffer(0, 6);
+                System.out.println(Arrays.toString(b.getBytes()));
+                Buffer bc = buffer.getBuffer(7, 38);
+                System.out.println(bc.toString());
                 System.out.println(buffer.toString()); 
+                socket.write("OK");
             });
         });
         
