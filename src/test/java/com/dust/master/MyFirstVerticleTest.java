@@ -23,7 +23,7 @@ public class MyFirstVerticleTest  {
     @Before
     public void setUp(TestContext context) {
         vertx = Vertx.vertx();
-        vertx.deployVerticle(MyFirstVerticle.class.getName(), context.asyncAssertSuccess());
+        vertx.deployVerticle(MasterVerticle.class.getName(), context.asyncAssertSuccess());
     }
 
     @After

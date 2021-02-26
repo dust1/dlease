@@ -26,17 +26,11 @@ public class ClientOnlinePojo {
      * 客户端上线携带的数据
      */
     private Buffer data;
-    /**
-     * 客户端数据偏移量
-     */
-    private static final int DATA_OFFSET = 41;
 
     /**
      * 数据校验
      */
     private static final int DATA_CHECK = 40;
-
-    // private static final int DATA_LEN_LENGTH = 
 
     /**
      * 
@@ -48,11 +42,17 @@ public class ClientOnlinePojo {
             return Optional.empty();
         }
         String clientId = buffer.getBuffer(CLIENT_ID_OFFSET, CLIENT_ID_LEN).toString();
-        byte[] data = null; 
+        Buffer data = null;
         if (buffer.getByte(DATA_CHECK) == 1) {
-
+            int dataLen = ByteTool.byteToInt(buffer.getBytes(41, 43), 0, 2);
+            data = buffer.getBuffer(44, 44 + dataLen);
         }
-        return null;
+        return Optional.of(new ClientOnlinePojo(clientId, data));
+    }
+
+    private ClientOnlinePojo(String clientID, Buffer data) {
+        this.clientID = clientID;
+        this.data = data;
     }
 
 }
