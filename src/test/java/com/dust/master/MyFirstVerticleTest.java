@@ -44,7 +44,12 @@ public class MyFirstVerticleTest  {
                     async.complete();
                 });
                 byte[] datas = new byte[23];
-                Buffer bu = Buffer.buffer().appendString("dlease").appendString("19918d80aa0111eabe98f5022726449f").appendBytes(datas);
+                Buffer bu = Buffer.buffer()
+                .appendString("dlease")
+                .appendInt(1)
+                .appendString("qwertyui8u7y6tyw123wqw2we2132w")
+                .appendInt(1)
+                .appendBytes(datas);
                 socket.write(bu);
             } else {
 

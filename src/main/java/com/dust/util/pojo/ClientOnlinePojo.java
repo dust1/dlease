@@ -38,16 +38,17 @@ public class ClientOnlinePojo {
      * @return
      */
     public static Optional<ClientOnlinePojo> create(Buffer buffer) {
-        if (!ByteTool.checkHeader(buffer) || buffer.length() < 40) {
-            return Optional.empty();
-        }
-        String clientId = buffer.getBuffer(CLIENT_ID_OFFSET, CLIENT_ID_LEN).toString();
-        Buffer data = null;
-        if (buffer.getByte(DATA_CHECK) == 1) {
-            int dataLen = ByteTool.byteToInt(buffer.getBytes(41, 43), 0, 2);
-            data = buffer.getBuffer(44, 44 + dataLen);
-        }
-        return Optional.of(new ClientOnlinePojo(clientId, data));
+        // if (!ByteTool.checkHeader(buffer) || buffer.length() < 40) {
+        //     return Optional.empty();
+        // }
+        // String clientId = buffer.getBuffer(CLIENT_ID_OFFSET, CLIENT_ID_LEN).toString();
+        // Buffer data = null;
+        // if (buffer.getByte(DATA_CHECK) == 1) {
+        //     int dataLen = ByteTool.byteToInt(buffer.getBytes(41, 43), 0, 2);
+        //     data = buffer.getBuffer(44, 44 + dataLen);
+        // }
+        // return Optional.of(new ClientOnlinePojo(clientId, data));
+        return null;
     }
 
     private ClientOnlinePojo(String clientID, Buffer data) {
